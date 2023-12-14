@@ -1,6 +1,3 @@
-
-
-
 <?php 
     include ("../config/dbConfig.php");
 
@@ -14,7 +11,7 @@
         }
 
         function getConnections() {
-            $connection = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME, 3307);
+            $connection = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME, 3306);
             if( !$connection ){
                 printf("Error de conexion: %s\n", mysqli_connect_error());
                 exit();
