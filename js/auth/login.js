@@ -25,7 +25,7 @@ const urlLogin = './php/auth/auth.controller.php';
             })
             .then(resp => resp.json())
             .then(data => {
-
+                console.log(data);
                 if(data === 1){
                     return alerts.confirm('Success', 'Iniciando sesion', 'success')
                         .then((result) => {

@@ -18,7 +18,7 @@
         $query = "SELECT * FROM users where email = '$email' AND password = '$password' ";
 
         $data = $onConnection->getRows($query);
-        
+        // echo json_encode($onConnection);
         if($onConnection->numberRows == 0){
             echo 0;
         }else{
