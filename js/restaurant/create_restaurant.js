@@ -109,8 +109,6 @@ const getDniUsersUrl = '../php/restaurants/dni_users.controller.php';
         }
     } 
 
-
-
     main_create_restaurant();
 
 })();

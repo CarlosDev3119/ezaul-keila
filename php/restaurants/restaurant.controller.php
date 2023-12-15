@@ -32,11 +32,11 @@
 
             }else if($role == 'dueño'){
                 $actions = '<div class="btn-group" role="group">';
-                $actions .= '<button type="button" class="btn btn-primary">Actualizar</button>';
+                $actions .= '<a href="./pages/update_restaurant.php?id='.$values['id_restaurant'].'" class="btn btn-primary">Actualizar</a>';
                 $actions .= '</div>';
             }else{
                 $actions = '<div class="btn-group" role="group">';
-                $actions .= '<button type="button" class="btn btn-primary">Actualizar</button>';
+                $actions .= '<a href="./pages/update_restaurant.php?id='.$values['id_restaurant'].'" class="btn btn-primary">Actualizar</a>';
                 $actions .= '<button type="button" class="btn btn-danger">Eliminar</button>';
                 $actions .= '</div>';
             }
@@ -65,8 +65,7 @@
      
 
     }
-
-
+    
       //TODO: CREACION
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         $name   = $_POST['name'];
