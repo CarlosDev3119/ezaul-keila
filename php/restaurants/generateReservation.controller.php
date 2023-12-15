@@ -55,14 +55,13 @@
                 'name_user' => $values['name_user'],
                 'name_restaurant' => $values['name_restaurant'],
                 'address_restaurant' => $values['address_restaurant'],
-                'phone_number_restaurant' => $values['phone_number_restaurant'],
-                'dni_user' => $values['dni_user']
+                'phone_number_restaurant' => $values['phone_number_restaurant']
             );
             $rows[] = $jsonArrayObject ;
         }
 
         echo json_encode($rows);
-        
+                
 
     }
 ?>

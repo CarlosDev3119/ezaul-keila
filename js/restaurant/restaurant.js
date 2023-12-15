@@ -76,10 +76,9 @@ const generateReservacion = async () => {
                 <td>${values.name_restaurant}</td>
                 <td>${values.address_restaurant}</td>
                 <td>${values.phone_number_restaurant}</td>
-                <td>${values.dni_user}</td>
             </tr>
         `
-    reservationTable.rows.add($(tableRows)).draw;
+    reservationTable.rows.add($(tableRows)).draw();
         
     })
 
@@ -89,7 +88,6 @@ const getReservation = async () => {
     try{
         const resp = await fetch(urlGenerateReservation);
         const data = await resp.json();
-        console.log(data);
         return data;
     }catch(error){
         throw new Error(error);

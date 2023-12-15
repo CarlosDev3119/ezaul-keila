@@ -37,7 +37,6 @@
                                             <th>NOMBRE DEL RESTAURATE</th>
                                             <th>DIRECCIÓN DEL RESTAURATE</th>
                                             <th>NUMERO DE TÉLEFONO DEL RESTAURANTE </th>
-                                            <th>DNI DEL USUARIO </th>
                                         </tr>
                                     </thead>
                                 
@@ -72,6 +71,11 @@
 
     
     <?php require_once "./views/footer.php" ?>
-    
+
+    <script type="module">
+        import {generateReservacion} from "./js/restaurant/restaurant.js";
+        generateReservacion();
+    </script>
+
 </body>
 </html>
