@@ -151,11 +151,8 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Restaurantes</h1>
-                    <p class="mb-4">Descubre una variedad única de experiencias culinarias en nuestros destacados restaurantes. 
-                        Desde la elegancia sofisticada hasta la calidez acogedora, cada establecimiento ofrece un ambiente distintivo para acompañar su excepcional 
-                        propuesta gastronómica. Deléitate con platos elaborados con los ingredientes más frescos y disfruta de un servicio de alta calidad en cada uno 
-                        de nuestros restaurantes. </p>
+                    <h1 class="h3 mb-2 text-gray-800">Agregar restaurantes</h1>
+                    <p class="mb-4">Agrega información de otros restaurantes. </p>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
