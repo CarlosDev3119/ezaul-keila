@@ -44,6 +44,20 @@ const reservar = (idRestaurant) => {
     
 }
 
+const eliminar = async (idRestaurant) => {
+    const data = await deleteRestaurant(idRestaurant);
+
+    if(data){
+        return alerts.confirm('Eliminación realiza', 'Restaurante eliminado', 'success').then((result) => {
+            if(result){
+                window.location.href = "./home.php"
+            }
+        });
+    }
+
+    alerts.confirm('Error', 'Ocurrió un error al eliminar el restaurante', 'error')
+}
+
 
 const setReservacion = async(dataId) => {
     try{
@@ -84,6 +98,20 @@ const generateReservacion = async () => {
 
 }
 
+const deleteRestaurant = async (id_restaurant) => {
+    try{
+        const resp = await fetch(urlRestaurant, {
+            method: 'DELETE',
+            body: JSON.stringify({id_restaurant})
+        });
+        const data = await resp.json();
+        return data;
+
+    }catch(error){
+        throw new Error(error);
+    }
+}
+
 const getReservation = async () => {
     try{
         const resp = await fetch(urlGenerateReservation);
@@ -110,4 +138,4 @@ const setDataTableRestaurant = async () => {
 }
 
 
-export {reservar, mainRestaurant, generateReservacion}
+export {reservar, mainRestaurant, generateReservacion, eliminar}

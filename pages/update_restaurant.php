@@ -166,35 +166,37 @@
                                 <div class="form-group row">
 
                                     <div class="col-sm-4 mb-3 mb-sm-0 py-3">
-                                        <input type="text" class="form-control form-control-user" id="name_restaurant"
-                                            placeholder="Ingresa el nombre del restaurante...">
+                                        <input type="text" class="form-control form-control-user" id="update_name_restaurant"
+                                            placeholder="Ingresa el nombre del restaurante..." disabled>
                                     </div>
 
                                     <div class="col-sm-4 mb-3 mb-sm-0 py-3">
-                                        <input type="text" class="form-control form-control-user" id="street_restaurant"
-                                            placeholder="Ingresa la calle del restaurante...">
+                                        <input type="text" class="form-control form-control-user" id="update_street_restaurant"
+                                            placeholder="Ingresa la calle del restaurante..." disabled>
                                     </div>
 
                                     <div class="col-sm-4 mb-3 mb-sm-0 py-3">
-                                        <input type="text" class="form-control form-control-user" id="city_restaurant"
-                                            placeholder="Ingresa la ciudad del restaurante...">
+                                        <input type="text" class="form-control form-control-user" id="update_city_restaurant"
+                                            placeholder="Ingresa la ciudad del restaurante..." disabled>
                                     </div>
                                 </div>
                                 
                                 <div class="form-group row">
                                     
                                     <div class="col-sm-4 mb-3 mb-sm-0 py-3">
-                                            <input type="text" class="form-control form-control-user" id="phone_restaurant"
+                                            <input type="text" class="form-control form-control-user" id="update_phone_restaurant"
                                                 placeholder="Ingresa el número del teléfono del restaurante...">
                                         </div>
+
+                                    <div class="col-sm-4 mb-3 mb-sm-0 py-3">
+                                        <input type="text" class="form-control form-control-user" id="update_owner_restaurant"
+                                            placeholder="Ingresa el número del teléfono del restaurante..." disabled>
+                                    </div>
     
                                     <div class="col-sm-4 mb-3 mb-sm-0 py-3">
 
-                                    <select class="form-control form-select" style="border-radius: 15px;" id="selectDni" aria-label="Default select example">
-                                        <option selected>Selecciona el usuario</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                    <select class="form-control form-select" style="border-radius: 15px;" id="updateSelectDni" aria-label="Default select example">
+                      
                                     </select>
                                                 
                                     </div>
@@ -203,12 +205,14 @@
 
 
                                 <div class="my-2"></div>
-                                    <center><a id="btnUpdate" class="btn btn-primary btn-icon-split btn-lg">
+                                    <center>
+                                    <a id="btnUpdate" class="btn btn-primary btn-icon-split btn-lg">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-flag"></i>
                                         </span>
                                         <span class="text">Actualizar información</span>
-                                    </a></center>
+                                    </a>
+                                    </center>
                                 </div>
 
                             </form>
@@ -252,7 +256,11 @@
     <script src="../template/vendor/datatables/dataTables.bootstrap4.min.js"></script>
     <script src="../template/js/demo/datatables-demo.js"></script>
 
-    <script type="module" src="../js/restaurant/create_restaurant.js"> 
+    <script type="module">
+        import {mainUpdateRestaurant} from  "../js/restaurant/update_restaurant.js";
+        mainUpdateRestaurant();
+
+
     </script>
 
 </body>

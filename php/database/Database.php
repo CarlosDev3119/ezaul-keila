@@ -51,10 +51,21 @@
 
         function shotSimple($param){
             $onConnection = $this->getConnections();
-            mysqli_query($onConnection, $param);
-            $this->last_id = $onConnection->insert_id;
+            $result = mysqli_query($onConnection, $param);
 
+            if ($result) {
+                // La consulta fue exitosa
+                $this->last_id = $onConnection->insert_id;
+            } else {
+                // La consulta falló
+                // Puedes manejar el error según tus necesidades
+                echo "Error en la consulta: " . mysqli_error($onConnection);
+            }
+    
             $this->closeConnection($onConnection);
+    
+            // Devuelve un indicador de éxito
+            return $result;
         }
 
     }

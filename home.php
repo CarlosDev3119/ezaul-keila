@@ -86,10 +86,11 @@
     <?php require_once "./views/footer.php" ?>
 
     <script type="module">
-        import {reservar, mainRestaurant} from './js/restaurant/restaurant.js';
+        import {reservar, mainRestaurant, eliminar} from './js/restaurant/restaurant.js';
         mainRestaurant();
 
         window.reservar = reservar;
+        window.eliminar = eliminar;
         
     </script>
     
