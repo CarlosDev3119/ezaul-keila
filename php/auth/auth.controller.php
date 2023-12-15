@@ -5,18 +5,19 @@
     if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         // session_start();
-
         if(isset($_POST["email"])){
             $email = $_POST["email"];
         }
+
         if(isset($_POST["password"])){
             $password  = $_POST["password"];
         }
-
+            
         $onConnection = new Database();
-
+            
         $query = "SELECT * FROM users where email = '$email' AND password = '$password' ";
-
+            
+        
         $data = $onConnection->getRows($query);
         
         if($onConnection->numberRows == 0){
@@ -26,6 +27,8 @@
             $_SESSION["user_email"]  = $data[0]["email"];
             $_SESSION["role"]        = $data[0]["role"];
             $_SESSION["status_user"] = $data[0]["status_user"];
+            $_SESSION["dni_user"]    = $data[0]["dni_user"];
+
             echo 1;
 
         }

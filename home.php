@@ -1,4 +1,5 @@
 <?php require_once "./views/header.php" ?>
+<?php session_start()?>
 <body>
     
       <!-- Page Wrapper -->
@@ -27,6 +28,16 @@
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Datos sobre restaurantes</h6>
+                            <?php 
+                                if($_SESSION["role"] == "dueño" OR $_SESSION["role"] == "admin"){
+                            ?>
+                                <a href="./pages/create_restaurant.php" class="btn btn-success btn-icon-split mt-2">
+                                    <span class="icon text-white-50">
+                                        <i class="fas fa-check"></i>
+                                    </span>
+                                    <span class="text">Agregar restaurante</span>
+                                </a>
+                            <?php } ?>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -74,6 +85,13 @@
     
     <?php require_once "./views/footer.php" ?>
 
-    <script src="./js/restaurant/restaurant.js" type="module"></script>
+    <script type="module">
+        import {reservar, mainRestaurant} from './js/restaurant/restaurant.js';
+        mainRestaurant();
+
+        window.reservar = reservar;
+        
+    </script>
+    
 </body>
 </html>

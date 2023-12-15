@@ -9,31 +9,45 @@
         $role = $_SESSION['role'];
 
         $onConnection = new Database();
-
-        $query = "SELECT rest.*, CONCAT(own.name_owner, ' ', own.last_name) as name_owner FROM restaurants as rest INNER JOIN owners as own ON own.dni_owner = rest.dni_owner";
-
-        $data = $onConnection->getRows($query);
-
-        if($role == 'cliente'){
-            $actions = '<div class="btn-group" role="group">';
-            $actions .= '<button type="button" class="btn btn-primary">Actualizar</button>';
-            $actions .= '</div>';
+        if($role == 'admin'){
+            $query = "SELECT rt.id_restaurant, rt.name_restaurant, rt.street_restaurant, rt.city_restaurant, rt.phone_number_restaurant, CONCAT(u.name_user, ' ', u.last_name ) AS name_user 
+                      FROM restaurants AS rt INNER JOIN users AS u ON u.dni_user = rt.dni_user";
+        }else if($role == 'dueño'){
+            $query = "SELECT rt.id_restaurant, rt.name_restaurant, rt.street_restaurant, rt.city_restaurant, rt.phone_number_restaurant, CONCAT(u.name_user, ' ', u.last_name ) AS name_user 
+                      FROM restaurants AS rt INNER JOIN users AS u ON u.dni_user = rt.dni_user WHERE u.role = 'dueño'";   
         }else{
-            $actions = '<div class="btn-group" role="group">';
-            $actions .= '<button type="button" class="btn btn-primary">Actualizar</button>';
-            $actions .= '</div>';
-            $actions .= '<button type="button" class="btn btn-danger">Eliminar</button>';
+            $query = "SELECT rt.id_restaurant, rt.name_restaurant, rt.street_restaurant, rt.city_restaurant, rt.phone_number_restaurant, CONCAT(u.name_user, ' ', u.last_name ) AS name_user 
+                      FROM restaurants AS rt INNER JOIN users AS u ON u.dni_user = rt.dni_user;";
         }
 
-        $rows = [];
+
+
+        $data = $onConnection->getRows($query);
+        
         foreach($data as $values){
+            if($role == 'cliente'){
+                $actions = '<div class="btn-group" role="group">';
+                $actions .= '<button type="button" onclick="reservar('.$values['id_restaurant'].')"  id="btn_reservar" class="btn btn-success">Reservar</button>';
+                $actions .= '</div>';
+
+            }else if($role == 'dueño'){
+                $actions = '<div class="btn-group" role="group">';
+                $actions .= '<a href="./pages/update_restaurant.php?id='.$values['id_restaurant'].'" class="btn btn-primary">Actualizar</a>';
+                $actions .= '</div>';
+            }else{
+                $actions = '<div class="btn-group" role="group">';
+                $actions .= '<a href="./pages/update_restaurant.php?id='.$values['id_restaurant'].'" class="btn btn-primary">Actualizar</a>';
+                $actions .= '<button type="button" class="btn btn-danger">Eliminar</button>';
+                $actions .= '</div>';
+            }
+
             $jsonArrayObject = array(
                 'id_restaurant' => $values['id_restaurant'],
                 'name_restaurant' => $values['name_restaurant'],
                 'address' => $values['street_restaurant'],
                 'city_restaurant' => $values['city_restaurant'],
                 'phone_number' => $values['phone_number_restaurant'],
-                'owner' => $values['name_owner'],
+                'name_user' => $values['name_user'],
                 'actions' => $actions,
                 
             );
@@ -44,19 +58,34 @@
         
 
     }
+    if($_SERVER["REQUEST_METHOD"] == "GET"){
 
-    //TODO: ACTUALIZACION
-    if($_SERVER["REQUEST_METHOD"] == "PUT"){
+        $onConnection = new Database(); 
 
-    }
-
-    //TODO: ELIMINACION
-    if($_SERVER["REQUEST_METHOD"] == "DELETE"){
+     
 
     }
-
+    
       //TODO: CREACION
     if($_SERVER["REQUEST_METHOD"] == "POST"){
+        $name   = $_POST['name'];
+        $street = $_POST['street'];
+        $city   = $_POST['city'];
+        $phone  = $_POST['phone'];
+        $dni    = $_POST['dni_user'];
+        
+
+        $onConnection = new Database(); 
+        $query = "INSERT INTO restaurants VALUES(null, '$name', '$street', '$city', '$phone', '$dni')";
+        $onConnection->shotSimple($query); 
+        if($onConnection->last_id == 0){
+            echo json_encode(false);
+            
+        }else{
+            echo json_encode(true);
+
+        }
+      
 
     }
    
