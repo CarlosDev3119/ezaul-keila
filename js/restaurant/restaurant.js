@@ -1,8 +1,7 @@
+import { alerts } from "../utils/alerts.adapter.js";
+
 const urlRestaurant = './php/restaurants/restaurant.controller.php';
 const urlGenerateReservation = './php/restaurants/generateReservation.controller.php';
-
-    
-const reservation_btn = document.querySelector('#btn_reservar');
 
 const mainRestaurant = async () => {
     const data = await setDataTableRestaurant();
@@ -32,9 +31,19 @@ const mainRestaurant = async () => {
 const reservar = (idRestaurant) => {
     const data = new FormData();
     data.append('idRestaurant', idRestaurant);
-    setReservacion(data);
+    const isValid = setReservacion(data);
+    if(isValid){
+        return alerts.confirm('Reservacion exitosa', 'Se ha guardado tu reservación', 'success').then((result) => {
+            if(result){
+                window.location.href = "./reservaciones.php"
+            }
+        });
+    }
+
+    alerts.confirm('Error', 'Ocurrió un error al realizar tu reservación', 'error')
     
 }
+
 
 const setReservacion = async(dataId) => {
     try{
@@ -45,13 +54,47 @@ const setReservacion = async(dataId) => {
         });
 
         const resp = await data.json();
-        console.log(resp);
+        return resp;
         
     }catch(error){
         console.log(error)
     }
 }
 
+const generateReservacion = async () => {
+    const data = await getReservation();
+    let reservationTable = $('#dataTable_Reservation').DataTable();
+    
+    reservationTable.clear().draw();
+
+    data.forEach( values => {
+        let tableRows = ''
+        tableRows += `
+            <tr>
+                <td>ID:${values.id_estancia}</td>
+                <td>${values.name_user}</td>
+                <td>${values.name_restaurant}</td>
+                <td>${values.address_restaurant}</td>
+                <td>${values.phone_number_restaurant}</td>
+                <td>${values.dni_user}</td>
+            </tr>
+        `
+    reservationTable.rows.add($(tableRows)).draw;
+        
+    })
+
+}
+
+const getReservation = async () => {
+    try{
+        const resp = await fetch(urlGenerateReservation);
+        const data = await resp.json();
+        console.log(data);
+        return data;
+    }catch(error){
+        throw new Error(error);
+    }
+}
 
 const setDataTableRestaurant = async () => {
 
@@ -66,8 +109,7 @@ const setDataTableRestaurant = async () => {
 
     }
 
-
 }
 
 
-export {reservar, mainRestaurant}
+export {reservar, mainRestaurant, generateReservacion}

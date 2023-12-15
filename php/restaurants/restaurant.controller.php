@@ -58,7 +58,13 @@
         
 
     }
+    if($_SERVER["REQUEST_METHOD"] == "GET"){
 
+        $onConnection = new Database(); 
+
+     
+
+    }
 
 
       //TODO: CREACION

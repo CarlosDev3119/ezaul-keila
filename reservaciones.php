@@ -24,30 +24,20 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Datos sobre restaurantes</h6>
-                            <?php 
-                                if($_SESSION["role"] == "dueño" OR $_SESSION["role"] == "admin"){
-                            ?>
-                                <a href="./pages/create_restaurant.php" class="btn btn-success btn-icon-split mt-2">
-                                    <span class="icon text-white-50">
-                                        <i class="fas fa-check"></i>
-                                    </span>
-                                    <span class="text">Agregar restaurante</span>
-                                </a>
-                            <?php } ?>
+                            <h6 class="m-0 font-weight-bold text-primary">Datos sobre tu reservación</h6>
+
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <table class="table table-bordered" id="dataTable_Reservation" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
-                                            <th>NOMBRE</th>
-                                            <th>DIRECCION</th>
-                                            <th>CIUDAD</th>
-                                            <th>NUMERO DE RESTAURANTE</th>
-                                            <th>DUEÑO</th>
-                                            <th>ACCIONES</th>
+                                            <th>ID_ESTANCIA</th>
+                                            <th>NOMBRE DEL CLIENTE</th>
+                                            <th>NOMBRE DEL RESTAURATE</th>
+                                            <th>DIRECCIÓN DEL RESTAURATE</th>
+                                            <th>NUMERO DE TÉLEFONO DEL RESTAURANTE </th>
+                                            <th>DNI DEL USUARIO </th>
                                         </tr>
                                     </thead>
                                 
@@ -74,6 +64,7 @@
     <!-- End of Page Wrapper -->
 
     <!-- Scroll to Top Button-->
+
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
@@ -81,7 +72,6 @@
 
     
     <?php require_once "./views/footer.php" ?>
-
     
 </body>
 </html>

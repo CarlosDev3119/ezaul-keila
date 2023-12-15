@@ -12,7 +12,7 @@ const getDniUsersUrl = '../php/restaurants/dni_users.controller.php';
     const inputStreet_restaurant = document.querySelector('#street_restaurant');
     const inputCity_restaurant   = document.querySelector('#city_restaurant');
     const inputPhone_restaurant  = document.querySelector('#phone_restaurant');
-    const selectDni          = document.querySelector('#selectDni');
+    const selectDni              = document.querySelector('#selectDni');
     const btnCreate              = document.querySelector('#btnCreate');
 
     const main_create_restaurant = async () => {
@@ -74,11 +74,10 @@ const getDniUsersUrl = '../php/restaurants/dni_users.controller.php';
            
         }        
         
-
+    
 
     const getDniUsers = async () => {
         try{
-            
             const data = await fetch(getDniUsersUrl);
             const dni = await data.json();
             return dni;
